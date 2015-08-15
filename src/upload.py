@@ -18,7 +18,7 @@ def dumpData(s):
   start_dt = d.strftime("%Y-%m-%d 0:0:0")
   end_dt = (d+datetime.timedelta(days=1)).strftime("%Y-%m-%d 0:0:0")
   # d 的那一日
-  e = 'psql -d ptt_user -c "\copy (select * from users_backup where record_time>=\'%s\' and record_time<\'%s\') WITH FORMAT CSV, HEADER TRUE, FORCE_QUOTE * to \'/home/aha/Project/PTT_Data/data/list.csv\'"'%(start_dt,end_dt)
+  e = 'psql -d ptt_user -c "\copy (select * from users_backup where record_time>=\'%s\' and record_time<\'%s\') WITH DELIMITER \',\' CSV HEADER FORCE_QUOTE * to \'/home/aha/Project/PTT_Data/data/list.csv\'"'%(start_dt,end_dt)
   print e
   os.system(e)
 
